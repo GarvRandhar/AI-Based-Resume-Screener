@@ -1,0 +1,65 @@
+{
+  "description": "Small regression harness for name extraction + hybrid profiles. Paths relative to repo root.",
+  "cases": [
+    {
+      "id": "priya",
+      "path": "sample_data/priya_sharma.txt",
+      "expected_name": "Priya Sharma",
+      "expected_email_contains": "priya.sharma",
+      "min_name_confidence": "medium"
+    },
+    {
+      "id": "alice",
+      "path": "sample_data/alice_chen.txt",
+      "expected_name": "Alice Chen",
+      "expected_email_contains": "alice.chen",
+      "min_name_confidence": "medium"
+    },
+    {
+      "id": "bob",
+      "path": "sample_data/bob_martinez.txt",
+      "expected_name": "Bob Martinez",
+      "expected_email_contains": "bob.m",
+      "min_name_confidence": "medium"
+    },
+    {
+      "id": "james",
+      "path": "sample_data/james_okafor.txt",
+      "expected_name": "James Okafor",
+      "expected_email_contains": "okafor",
+      "min_name_confidence": "medium"
+    },
+    {
+      "id": "filename_doc_suffix",
+      "path": null,
+      "filename_only": "GARV RANDHAR_Doc-6.pdf",
+      "resume_text": "Software developer with Node.js experience.\nSkills: React, Express.",
+      "expected_name": "Garv Randhar",
+      "min_name_confidence": "medium"
+    },
+    {
+      "id": "filename_resume_suffix",
+      "path": null,
+      "filename_only": "Amit_Singh Resume.pdf",
+      "resume_text": "Amitsingh Info\nDeveloper\namit.singh@gmail.com",
+      "expected_name": "Amit Singh",
+      "min_name_confidence": "medium"
+    },
+    {
+      "id": "filename_resume_parens",
+      "path": null,
+      "filename_only": "AYAN NASHINE RESUME (1) (1).pdf",
+      "resume_text": "My novelties include hands-on experience with Python and IoT.",
+      "expected_name": "Ayan Nashine",
+      "min_name_confidence": "medium"
+    },
+    {
+      "id": "prose_rejected",
+      "path": null,
+      "filename_only": "scan001.pdf",
+      "resume_text": "My novelties include hands-on experience with Python and Machine Learning.",
+      "expected_name": null,
+      "must_not_contain": ["novelties", "hands"]
+    }
+  ]
+}
