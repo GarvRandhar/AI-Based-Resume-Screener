@@ -1,17 +1,29 @@
-# AI-Based Resume Screener
+<div align="center">
+
+# 🧠 AI-Based Resume Screener
+
+### Local, privacy-first AI resume screening for recruiters
+
+Paste one **hiring brief** (full instructions), upload 100+ resumes, and get an explainable, ranked shortlist — all on one machine with Ollama-powered local LLMs.
+
+**No cloud APIs · No Docker · No Redis/Celery · Resume data never leaves your Mac.**
+
 *By Garv Randhar*
+📌 **Built during my internship at Appventurez Mobitech Pvt. Ltd.**
 
-Local, privacy-first AI resume screening for recruiters. Paste one **hiring brief** (full instructions), upload 100+ resumes, and get an explainable ranked shortlist — all on one machine with **O[...] 
+</div>
 
-No cloud APIs, no Docker, no Redis/Celery. Resume data never leaves your Mac.
+---
 
 ## 🎥 Demo
 
-See the AI-Based Resume Screener in action:
+<div align="center">
 
-[▶️ Watch Demo Video](./ResumeScreener_Demo.mp4)
+[![Watch the demo](https://img.youtube.com/vi/BTVlGaT3KUQ/maxresdefault.jpg)](https://youtu.be/BTVlGaT3KUQ)
 
-> If the video doesn’t open in-preview on your device, right-click and open in a new tab.
+**[▶️ Watch the demo video on YouTube](https://youtu.be/BTVlGaT3KUQ)**
+
+</div>
 
 ## Architecture
 
@@ -26,13 +38,13 @@ See the AI-Based Resume Screener in action:
 | Embeddings | Ollama `nomic-embed-text` |
 | Parsing | pdfplumber / PyMuPDF, python-docx, OCR fallback |
 
-**Pipeline (per resume):** layout-aware text extract → structured profile → optional hard filters → **rank vs hiring brief only** (ATS keyword % + embedding similarity + LLM fit) → blended[...] 
+**Pipeline (per resume):** layout-aware text extract → structured profile → optional hard filters → **rank vs hiring brief only** (ATS keyword % + embedding similarity + LLM fit) → blended final score.
 
-**Prompt-first & multi-industry:** HR writes one brief for any drive (sales, clinical, ops, campus, tech…). Ranking uses only that brief (ATS + embeddings + LLM). Hybrid extract is industry-ligh[...] 
+**Prompt-first & multi-industry:** HR writes one brief for any drive (sales, clinical, ops, campus, tech…). Ranking uses only that brief (ATS + embeddings + LLM). Hybrid extract is industry-light, so generic fields work across roles.
 
-**Extraction quality:** PDFs use multi-column-aware reading order + table cells; email/phone/skills/years are grounded by regex/lexicon; **two-pass years** are computed from work history in code ([...] 
+**Extraction quality:** PDFs use multi-column-aware reading order + table cells; email/phone/skills/years are grounded by regex/lexicon; **two-pass years** are computed from work history in code (not LLM-estimated) for consistency.
 
-**Fast bulk mode (default):** Phase 1 is **hybrid-only** (no LLM chat) + ATS + embed for everyone. Phase 2 runs full LLM extract + fit only for the top-K by pre-score (default top 20, min pre-scor[...] 
+**Fast bulk mode (default):** Phase 1 is **hybrid-only** (no LLM chat) + ATS + embed for everyone. Phase 2 runs full LLM extract + fit only for the top-K by pre-score (default top 20, min pre-score configurable in `config.json`).
 
 **Recruiter overrides:** Edit name/years/skills/etc. on a candidate and re-score that row only (no full batch re-run).
 
@@ -207,7 +219,7 @@ All three appear separately in the UI — never a single opaque number.
 
 ## Notes for M4 Air (16 GB)
 
-- Default **concurrency = 2** matches Ollama’s local serialization; raise carefully.
+- Default **concurrency = 2** matches Ollama's local serialization; raise carefully.
 - First LLM call after idle can be slow (model load).
 - 100 resumes will take a while with an 8B model — the UI shows partial results as each file finishes.
 - One bad resume never aborts the batch (per-file try/except + retries on JSON parse).
@@ -224,4 +236,11 @@ If you are committing this project to a git repository, make sure not to include
 - `data/` & `uploads/` (Local SQLite database and temporary parsed resumes)
 - `.DS_Store` (macOS hidden files)
 - `.env` files (Local secrets and configuration)
->>>>>>> b8eda12 (Initial commit: AI-Based Resume Screener)
+
+---
+
+<div align="center">
+
+🙏 Built as part of my internship at **Appventurez Mobitech Pvt. Ltd.**
+
+</div>
